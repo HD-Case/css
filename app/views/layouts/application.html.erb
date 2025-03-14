@@ -21,39 +21,37 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/posts">Posts</a>
-          </li>
-          
+          </li>    
         </ul>
 
-          <p>
+          <div class="navbar-nav">
             <% @user = User.find_by({ "id" => session["user_id"] }) %>
             <% if @user == nil %>
-              <a href="/users/new">Sign Up</a>
-              |
-              <a href="/login">Login</a>
+              <a href="/users/new" class="btn btn-outline-success me-2">Sign Up</a>
+              <a href="/login" class="btn btn-outline-secondary">Login</a>
             <% else %>
-              Logged in as: <%= @user["first_name"] %>
-              |
-              <a href="/logout">Logout</a>
+              <span class="navbar-text me-2">
+                Logged in as: <%= @user["first_name"] %>
+              </span>
+              <a href="/logout" class="btn btn-outline-secondary">Logout</a>
             <% end %>
-          </p>
+          </div>
       </div>
     </div>
   </nav>
 
   <div class="container">
-  <div>
-    <h1>Tacostagram</h1>
     <div>
-      <a href="/posts/new/">New Post</a>
+      <div>
+        <a href="/posts/new/">New Post</a>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <%= flash["notice"] %>
-  </div>
+    <div>
+      <%= flash["notice"] %>
+    </div>
 
-  <%= yield %>
+    <%= yield %>
   </div>
 </body>
 </html>
